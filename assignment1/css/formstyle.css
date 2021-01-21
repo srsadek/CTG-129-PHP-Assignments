@@ -1,0 +1,100 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+
+form{
+    background: white;
+    padding: 25px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+}
+
+.form-field{
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.select-field{
+    margin-top: 27px;
+}
+
+.form-field label{
+    display: flex;
+    align-items: flex-end;
+    width: 60px;
+}
+
+.form-field input{
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid skyblue;
+    padding: 20px 0 0 0;
+}
+
+input:focus{
+    outline: none;
+    border-bottom: 1px solid rgb(59, 153, 190);
+}
+
+input:hover{
+    border-bottom: 1px solid  rgb(59, 153, 190);
+}
+
+#submit-btn{
+    margin: 40px 0 0 auto;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    background-color: deepskyblue;
+    border-radius: 5px;
+}
+
+.output{
+    /* position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: -20px; */
+    width: 40%;
+    text-align: center;
+    animation: slideup 4s;
+    animation-fill-mode: forwards;
+
+    padding: 5px;
+    border: 1px solid blue;
+    background: whitesmoke;
+    color: darkblue;
+    border-radius: 5px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+@keyframes slideup{
+    0% {
+        opacity: 0;
+        
+    }
+    30% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }    
+}
