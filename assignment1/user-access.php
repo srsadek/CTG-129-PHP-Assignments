@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <form action="user-access.php" id="main-form" method="get" autocomplete="off">
+        <form action="user-access.php" id="main-form" method="post" autocomplete="off">
             <div class="form-field">
                 <label for="name">Name:</label>
                 <input type="text" id="name" class="input-text"  name="name"><br><br>
@@ -30,8 +30,8 @@
 
 <!-- /////////PHP code///////// -->
 <?php
-    $name = isset($_GET["name"]) ? trim($_GET["name"])  :  "";
-    $age = isset($_GET["age"]) ? trim($_GET["age"]) : "";
+    $name = isset($_POST["name"]) ? trim($_POST["name"])  :  "";
+    $age = isset($_POST["age"]) ? trim($_POST["age"]) : "";
 
     if ($name == ""  || $age == "") {
         return;

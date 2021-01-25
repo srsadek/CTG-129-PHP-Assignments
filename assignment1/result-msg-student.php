@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <form action="result-msg-student.php" id="main-form" method="get" autocomplete="off">
+        <form action="result-msg-student.php" id="main-form" method="post" autocomplete="off">
             <div class="form-field">
                 <label for="name">Name:</label>
                 <input type="text" id="name" class="input-text" name="name"><br><br>
@@ -34,9 +34,9 @@
 
     <!-- /////////PHP code///////// -->
     <?php
-    $name = isset($_GET["name"]) ? trim($_GET["name"])  :  "";
-    $score = isset($_GET["score"]) ? trim($_GET["score"]) : "";
-    $sex = isset($_GET["score"]) ? trim($_GET["sex"]) : "m";
+    $name = isset($_POST["name"]) ? trim($_POST["name"])  :  "";
+    $score = isset($_POST["score"]) ? trim($_POST["score"]) : "";
+    $sex = isset($_POST["score"]) ? trim($_POST["sex"]) : "m";
 
     if ($name == ""  || $score == "") {
         return;
@@ -47,7 +47,7 @@
         return;
     }
 
-    $score = (int)trim($_GET["score"]);
+    $score = (int)trim($_POST["score"]);
     $addressBy  = "ভাইয়া";
     if($sex == "f"){
         $addressBy = "আপু";

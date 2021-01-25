@@ -15,7 +15,7 @@
 
     <?php
        for ($i = 2; $i <= 5; $i++) {
-        echo "<br><br>Times table for $i : <br>------------------<br>";
+        echo "<br><br>Times table for $i : <br>-----------------------<br>";
         for ($j = 1; $j <= 10; $j++) {
              $result = $i * $j;
             echo  "$i * $j = $result <br>";
