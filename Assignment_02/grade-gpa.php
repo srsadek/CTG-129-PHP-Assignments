@@ -77,7 +77,7 @@
                 <input type="text" class="numeric-input input-text" name="score" value="<?php echo $score ?>"><br>
             </div>
             <div class="red-text"><?php echo $error_msgs['score']; ?></div>
-            <button id="submit-btn" type="submit" name = "submit">Get Grade</button>
+            <button class ="submit-btn" type="submit" name = "submit">Get Grade</button>
         </form>
     </div>
 </body>

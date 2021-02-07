@@ -79,7 +79,7 @@
                 <input type="text" class="numeric-input input-text" name="age" value="<?php echo $age ?>" ><br><br>
             </div>
             <div class="red-text"><?php echo $error_msgs['age']; ?></div>
-            <button id="submit-btn" name = "submit" type="submit">Show Age Group</button>
+            <button class="submit-btn" name = "submit" type="submit">Show Age Group</button>
         </form>
     </div>
 </body>

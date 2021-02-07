@@ -113,7 +113,7 @@
             <div class="red-text"><?php echo $error_msg; ?></div>
             
             <!--  -->
-            <button id="submit-btn" name = "submit" type="submit">Show Area</button>
+            <button class ="submit-btn" name = "submit" type="submit">Show Area</button>
         </form>
     </div>
 

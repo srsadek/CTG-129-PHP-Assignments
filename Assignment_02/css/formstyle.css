@@ -40,6 +40,7 @@ form{
     border: none;
     border-bottom: 1px solid skyblue;
     padding: 20px 0 0 0;
+    text-align: center;
 }
 
 .red-text{
@@ -57,7 +58,7 @@ input:hover{
     border-bottom: 1px solid  rgb(59, 153, 190);
 }
 
-#submit-btn{
+.submit-btn{
     margin: 40px 0 0 auto;
     padding: 5px;
     display: flex;
@@ -78,7 +79,7 @@ input:hover{
     bottom: -20px; */
     width: 40%;
     text-align: center;
-    animation: slideup 4s;
+    animation: show-output 4s;
     animation-fill-mode: forwards;
 
     padding: 5px;
@@ -90,21 +91,27 @@ input:hover{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
+    display: block;
 }
 
-@keyframes slideup{
+@keyframes show-output{
     0% {
         opacity: 0;
+        display: block;
         
     }
     30% {
         opacity: 1;
+        display: block;
+
     }
     80% {
         opacity: 1;
+        display: block;
+
     }
     100% {
         opacity: 0;
-        display: none;
+        display : none;
     }    
 }
