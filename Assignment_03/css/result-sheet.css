@@ -1,0 +1,44 @@
+form#result-form {
+    border: none;
+    padding: 0;
+}
+
+.result-sheet {
+    border: 1px solid skyblue;
+    padding: 5px;
+    margin-top: 25px;
+}
+
+.info-card{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: lightcyan;
+}
+
+.info-card div {
+    border: 1px solid cornflowerblue;
+    margin: 2px;
+}
+
+.scores{
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: cyan;
+}
+.subject-result{
+    text-align: center;
+    border: 1px solid lightskyblue;
+    padding: 5px;
+}
+
+.infofield {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.info-card div {
+    border: 1px solid cornflowerblue;
+    margin: 2px;
+}
