@@ -1,10 +1,11 @@
 <?php
     // Assignment requirement: পঞ্চম শ্রেণীর ছাত্রছাত্রীদের কিছু ডাটা নিয়ে একটি এরে স্ট্রাকচার তৈরি করুন
 
-    // it may seem like an overkill, but the reason why made the file complex is to learn and apply more on how to manioulate array data structure and utilize the functions
+    // it may seem like an overkill, but the reason why made the file complex is to learn and apply more on how to manipulate array data structure and utilize the functions
     // if you copy the code in your local drive, please do not forget to add the linked css as well
-    // this will present a form to the user when user can add a 5th grade strudent's personal information and grade for five subjects
-    //once added student's name will appear in the drop down box within "Get a Student's Result below:" where user can select the name of a student and his/her result will be shown below
+    // this will present a form to the user where user can add a 5th grade strudent's personal information and grades for five subjects
+    //once added student's name will appear in the drop down box within "Get a Student's Result below:" section, where user can select the name of a student and his/her result will be shown below
+    
     //the code is tested with invalid values, student with same roll no, page refresh with same value etc.
     //please feel free to test it and notify if you found any issue. 
 
