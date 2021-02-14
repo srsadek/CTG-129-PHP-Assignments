@@ -1,8 +1,13 @@
 <?php
-    // Assignment requirement: পঞ্চম শ্রেণীর ছাত্রছাত্রীদের কিছু ডাটা নিয়ে একটি এরে স্ট্রাকচার তৈরি করুন
+    // Assignment requirement: 
+    //পঞ্চম শ্রেণীর ছাত্রছাত্রীদের কিছু ডাটা নিয়ে একটি এরে স্ট্রাকচার তৈরি করুন যেখানে তাদের রেজাল্টের উপরে বেইজ করে জিপিএ এবং 
+    //গ্রেড সহ প্রকাশ করা হবে , , , রেজাল্ট পাবলিস্ট করার জন্য অবশ্যই একটি রেজাল্ট ফাংসন বানান 
+    //এবং এই ফাংসন টি ব্যবহার করে রেজাল্ট পাবলিস্ট করুন । ফাইনালি রেজাল্টে সিজিপিএ এবং ফাইরাল গ্রেড পাবলিস্ট করুন
 
     // it may seem like an overkill, but the reason why made the file complex is to learn and apply more on how to manipulate array data structure and utilize the functions
     // if you copy the code in your local drive, please do not forget to add the linked css as well
+    //make sure the name of the file is "result_system.php", otherwise request will not found on the server side
+
     // this will present a form to the user where user can add a 5th grade strudent's personal information and grades for five subjects
     //once added student's name will appear in the drop down box within "Get a Student's Result below:" section, where user can select the name of a student and his/her result will be shown below
     

@@ -4,20 +4,20 @@
 
     session_start();
 
-    $_SESSION['all_members'] = isset($_SESSION['all_members']) ? $_SESSION['all_members'] : [];
+    $_SESSION['phonebook_entry'] = isset($_SESSION['phonebook_entry']) ? $_SESSION['phonebook_entry'] : [];
 
     $new_input_errors = "";
     $selected_member = null;
-
-    if(isset($_POST['add-member']) && $_POST['add-member'] == "true"){
+    
+    if(isset($_POST['add-number']) && $_POST['add-number'] == "true"){
         $new_input_errors = getInputErrors();
         if(empty($new_input_errors)){
             $new_member = getNewMemberInformation();
-            array_push($_SESSION['all_members'], $new_member);
+            array_push($_SESSION['phonebook_entry'], $new_member);
             $_POST = array();
         }
-    }elseif (isset($_POST['selected-member-name'])) {
-        $selected_member = getMemberWithPropertyValue($_SESSION['all_members'], 'name', $_POST['selected-member-name']);
+    }elseif (isset($_POST['selected-person-name'])) {
+        $selected_member = getMemberWithPropertyValue($_SESSION['phonebook_entry'], 'name', $_POST['selected-person-name']);
         $msg = getMessageStringForAMember($selected_member);
         echo "<div class='output'>$msg</div>";
     }
@@ -29,7 +29,7 @@
         }
 
         //check if member with the same name exists
-        $member_with_same_name = getMemberWithPropertyValue($_SESSION['all_members'], 'name', $_POST['name']);
+        $member_with_same_name = getMemberWithPropertyValue($_SESSION['phonebook_entry'], 'name', $_POST['name']);
         if($member_with_same_name != null){
             $error_msgs = $error_msgs ."<p>Member with the same name is already registered!</p>";
         }
@@ -53,9 +53,9 @@
         $message = "$name, ";
         
         if($member['age'] < 18 ){
-            $message = $message . "Your membership is pending.<br>It will be activated once you reach 18.<br>For now concentrate on your education"; 
+            $message = $message . "Your membership is pending. It will be activated once you reach 18."; 
         }elseif ($member['age'] < 41) {
-            $message = $message . "Thank you for being part of the club. Wish you a very happy year!"; 
+            $message = $message . "Thank you for being part of the club."; 
         }
         elseif ($member['age'] < 101) {
             $message = $message . "You have been with us for so many years.<br>You have been upgraded to gold membership"; 
@@ -91,13 +91,22 @@
             flex-direction : column;
             align-items:center;
         }
+        .selected-person-number{
+            background: white;
+            padding: 25px;
+            border: 1px solid skyblue;
+            border-radius: 5px;
+            min-width: 300px;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to "The Club"</h1>
-        <form action="club_member.php" id="main-form" method="post" autocomplete="off">
-            <h4 style="text-align: center;">Add New Member: </h4>
+        <h1>Phonebook</h1>
+        <form action="phonebook.php" id="main-form" method="post" autocomplete="off">
+            <h4 style="text-align: center;">Add New Number: </h4>
             <hr style="border-top: 8px dotted skyblue; border-bottom: none; width: 50px;">
             <div class="form-field">
                 <label for="name">Name:</label>
@@ -105,11 +114,11 @@
                  value = "<?php echo isset($_POST['name'])? $_POST['name'] : ""?>"><br><br>
             </div>
             <div class="form-field">
-                <label for="age">Age</label>
-                <input type="number" id="age"  class="input-text" name="member-age" 
-                value = "<?php echo isset($_POST['member-age'])? $_POST['member-age'] : ""?>"><br><br>
+                <label for="phone-number">Phone Number</label>
+                <input type="text" id="phone-number"  class="input-text" name="phone-number" 
+                value = "<?php echo isset($_POST['phone-number'])? $_POST['phone-number'] : ""?>"><br><br>
             </div>
-            <button class="submit-btn" type="submit" name = "add-member" value = "true">Add Memmber</button>
+            <button class="submit-btn" type="submit" name = "add-number" value = "true">Add Number</button>
             <div style="margin-top: 25px;" class="red-text">
                 <?php echo $new_input_errors ?>
             </div>
@@ -117,22 +126,23 @@
 
         <br>
 
-        <form action="club_member.php" id="select-member" method="post" autocomplete="off">
-            <h4 style="text-align: center;">Select a member below: </h4>
+        <form action="club_member.php" id="select_person" method="post" autocomplete="off">
+            <h4 style="text-align: center;">Select a person's name below: </h4>
             <div class="form-field select-field">
                 <label >Name:</label>
-                <select name="selected-member-name" id="select-field" onchange= "this.form.submit()">
-                    <option value= "select-member">Select a Member</option>
+                <select name="selected-person-name" id="select-field" onchange= "this.form.submit()">
+                    <option value= "select_person">Select a Name</option>
                     <?php
-                        $members = isset($_SESSION['all_members']) ? $_SESSION['all_members'] : [];
-                        foreach ($members as $member) {
+                        $entries = isset($_SESSION['phonebook_entry']) ? $_SESSION['phonebook_entry'] : [];
+                        foreach ($entries as $entry) {
                     ?>
-                    <option value= "<?php echo $member['name']; ?>"><?php echo $member['name']; ?></option>
+                    <option value= "<?php echo $entry['name']; ?>"><?php echo $entry['name']; ?></option>
                     <?php } ?>
                 </select>
                 <noscript><input type="submit"  name = "action" value = "show-member"></noscript>
             </div>
         </form>
+        <div class="selected-person-number">abcd</div>
         <!-- <?php if($selected_member == null){return;} ?> -->
 
     </div>
