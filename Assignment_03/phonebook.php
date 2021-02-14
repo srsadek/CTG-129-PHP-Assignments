@@ -7,19 +7,19 @@
     $_SESSION['phonebook_entry'] = isset($_SESSION['phonebook_entry']) ? $_SESSION['phonebook_entry'] : [];
 
     $new_input_errors = "";
-    $selected_member = null;
+    $selected_entry = null;
     
     if(isset($_POST['add-number']) && $_POST['add-number'] == "true"){
         $new_input_errors = getInputErrors();
         if(empty($new_input_errors)){
-            $new_member = getNewMemberInformation();
+            $new_member = getNewPhoneEntry();
             array_push($_SESSION['phonebook_entry'], $new_member);
             $_POST = array();
         }
     }elseif (isset($_POST['selected-person-name'])) {
-        $selected_member = getMemberWithPropertyValue($_SESSION['phonebook_entry'], 'name', $_POST['selected-person-name']);
-        $msg = getMessageStringForAMember($selected_member);
-        echo "<div class='output'>$msg</div>";
+        $selected_entry = getMemberWithPropertyValue($_SESSION['phonebook_entry'], 'name', $_POST['selected-person-name']);
+        $number = $selected_entry['number'];
+        // echo "<div class='output'>$number</div>";
     }
     
     function getInputErrors(){
@@ -34,36 +34,28 @@
             $error_msgs = $error_msgs ."<p>Member with the same name is already registered!</p>";
         }
 
+        if(!isPhoneNumberValid($_POST['phone-number'])){
+            $error_msgs = $error_msgs ."<p>Please enter a valid number!</p><p>Number has to be numberic!</p>
+            <p>with minimum of 9 and maximum of 13 digits including country code</p>";
+        }
 
-        if(!isset($_POST['member-age']) || empty($_POST['member-age']) || $_POST['member-age'] < 1){
-            $error_msgs = $error_msgs ."<p>Please enter a valid age in year</p>";
-        } 
         return $error_msgs;
     }
 
-    function getNewMemberInformation(){
-        $name = isset($_POST["name"]) ? ucfirst(trim($_POST["name"]))  :  "";
-        $age = $_POST["member-age"];
-        return [ "name" => $name, "age" => $age];
+    function isPhoneNumberValid(string $number){
+        if(strlen($number) > 13 || strlen($number) < 9){
+            return false;
+        }
+        if(!is_numeric($number)){
+            return false;
+        }
+        return true;
     }
 
-    function getMessageStringForAMember($member){
-        
-        $name = $member['name'];
-        $message = "$name, ";
-        
-        if($member['age'] < 18 ){
-            $message = $message . "Your membership is pending. It will be activated once you reach 18."; 
-        }elseif ($member['age'] < 41) {
-            $message = $message . "Thank you for being part of the club."; 
-        }
-        elseif ($member['age'] < 101) {
-            $message = $message . "You have been with us for so many years.<br>You have been upgraded to gold membership"; 
-        }
-        else{
-            $message = $message . "You sure you are that old!!!"; 
-        }
-        return $message;
+    function getNewPhoneEntry(){
+        $name = isset($_POST["name"]) ? ucfirst(trim($_POST["name"]))  :  "";
+        $number = $_POST['phone-number'];
+        return [ "name" => $name, "number" => $number];
     }
 
     function getMemberWithPropertyValue($members_array, $property_name, $property_value){
@@ -91,7 +83,7 @@
             flex-direction : column;
             align-items:center;
         }
-        .selected-person-number{
+        .selected-entry{
             background: white;
             padding: 25px;
             border: 1px solid skyblue;
@@ -126,7 +118,7 @@
 
         <br>
 
-        <form action="club_member.php" id="select_person" method="post" autocomplete="off">
+        <form action="phonebook.php" id="select_person" method="post" autocomplete="off">
             <h4 style="text-align: center;">Select a person's name below: </h4>
             <div class="form-field select-field">
                 <label >Name:</label>
@@ -142,8 +134,16 @@
                 <noscript><input type="submit"  name = "action" value = "show-member"></noscript>
             </div>
         </form>
-        <div class="selected-person-number">abcd</div>
-        <!-- <?php if($selected_member == null){return;} ?> -->
+        <div class="selected-entry">
+            <div class="name">
+                <?php echo $selected_entry == null? "" : $selected_entry['name']; ?>
+            </div>
+            <hr>
+            <div class="number">
+                <?php echo $selected_entry == null? "" : $selected_entry['number']; ?>
+            </div>
+        </div>
+        <!-- <?php if($selected_entry == null){return;} ?> -->
 
     </div>
 </body>
