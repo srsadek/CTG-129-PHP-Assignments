@@ -36,7 +36,7 @@
     <?php
     $name = isset($_POST["name"]) ? trim($_POST["name"])  :  "";
     $score = isset($_POST["score"]) ? trim($_POST["score"]) : "";
-    $sex = isset($_POST["score"]) ? trim($_POST["sex"]) : "m";
+    $sex = isset($_POST["sex"]) ? trim($_POST["sex"]) : "m";
 
     if ($name == ""  || $score == "") {
         return;
