@@ -42,3 +42,7 @@ form#result-form {
     border: 1px solid cornflowerblue;
     margin: 2px;
 }
+
+.selected-entry hr{
+    width: 10rem;;
+}

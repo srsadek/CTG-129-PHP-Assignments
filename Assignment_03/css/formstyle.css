@@ -22,7 +22,7 @@ form{
 
 .form-field{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin: 10px 0;
 }
 
@@ -40,7 +40,7 @@ form{
     width: 150px;
     border: none;
     border-bottom: 1px solid skyblue;
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
     text-align: center;
 }
 
@@ -74,10 +74,6 @@ input:hover{
 }
 
 .output{
-    /* position: absolute;
-    left: 50%;
-    right: 50%;
-    bottom: -20px; */
     width: 40%;
     text-align: center;
     animation: show-output 4s;

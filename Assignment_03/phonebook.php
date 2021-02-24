@@ -35,8 +35,7 @@
         }
 
         if(!isPhoneNumberValid($_POST['phone-number'])){
-            $error_msgs = $error_msgs ."<p>Please enter a valid number!</p><p>Number has to be numberic!</p>
-            <p>with minimum of 9 and maximum of 13 digits including country code</p>";
+            $error_msgs = $error_msgs ."<p>Please enter a valid number!</p><p>Number has to be numberic between 9 and 13 digits!</p>";
         }
 
         return $error_msgs;
