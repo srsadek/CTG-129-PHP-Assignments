@@ -1,0 +1,14 @@
+.body{
+    background-color: yellow;
+}
+.container-fluid{
+    padding: 3% 15%;
+    height: 100vh;
+}
+
+.reload{
+    transition: all .5s;
+}
+.reload:hover{
+    transform: scale(1.2);
+}
