@@ -17,8 +17,13 @@ filetoUpload.onchange = function(e){
 
 
 let matchCaptchaReload = document.getElementById("reload-math-captcha");
-
 matchCaptchaReload.onclick = function (e) {
     let captchaImg = document.getElementById("math-captcha");
-    captchaImg.src = 'captcha.php?' + Math.random();
+    captchaImg.src = 'math-captcha.php?' + Math.random();
+}
+
+let textCaptchaReload = document.getElementById("reload-text-captcha");
+textCaptchaReload.onclick = function (e) {
+    let captchaImg = document.getElementById("text-captcha");
+    captchaImg.src = 'text-captcha.php?' + Math.random();
 }

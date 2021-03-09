@@ -1,17 +1,38 @@
 <?php
+    session_start();
     @include 'constants.php';
+    @include 'image-handler.php';
+    
+
+
+    function errorExists($error_msgs){
+        foreach ($error_msgs as $key => $value) {
+            if(!empty($value)){
+                return true;
+            }
+        }
+        return false;
+    }
     
     function getInputErrors(){
-       $error_msgs = ['name' => '', 'email' => '', 'phone' => '', 'password' => '', 'age' => '', 'captcha' => ''];
-
-       //Name
-       if(empty($_POST['name'])){
+        
+        $error_msgs = [
+                        'name' => '', 'email' => '', 'phone' => '', 'password' => '', 
+                        'age' => '', 'math_captcha' => '', 'text_captcha' => '',
+                        'profile_image' => ''
+                      ];
+       
+        if(empty($_POST['name'])){
             $error_msgs['name'] = constructErrorMessageParagraph('Required field');
        }
 
-       $error_msgs['name'] = getErrorMsgForInvalidEmail($_POST['email']);
+       $error_msgs['email'] = getErrorMsgForInvalidEmail($_POST['email']);
        $error_msgs['phone'] = getErrorMsgForInvalidPhone($_POST['phone']);
        $error_msgs['password'] = getErrorMsgForInvalidPassword($_POST['password'], $_POST['confirm-password']);
+       $error_msgs['age'] = getErrorMsgForAgeOutOfRange($_POST['age']);
+       $error_msgs['math_captcha'] = getErrorMsgForMathCaptchaMissmatch($_POST['math-captcha-result'], $_SESSION['math_captcha_expected_value']);
+       $error_msgs['text_captcha'] = getErrorMsgForMathCaptchaMissmatch($_POST['text-captcha-result'], $_SESSION['text_captcha_expected_value']);
+       $error_msgs['profile_image'] = getErrorMsgOnInvalidImageData();
        return $error_msgs;
     }
 
@@ -83,15 +104,35 @@
         if(empty($age)){
             return constructErrorMessageParagraph('Required field');
         }
-        if($age >= 40 || age <= 18){
-            return constructErrorMessageParagraph('Age must be between 18 and 40 to signin.');
+        if($age >= 40 || $age <= 18){
+            return constructErrorMessageParagraph('Age must be between 18 and 40 to sign up.');
         }
         return "";
     }
 
-    //math captcha
-    function getErrorMsgForMathCaptchaMissmatch(){
+    //captcha
+    function getErrorMsgForMathCaptchaMissmatch($entered_value, $expected_value){
         //$_SESSION['rand_code']
+        if(empty($entered_value)){
+            return  constructErrorMessageParagraph('Please enter captcha value to proceed.');
+        }
         
+        if($entered_value != $expected_value){
+            return  constructErrorMessageParagraph('Captcha did not match!');
+        }
     }
+
+    //profile photo upload
+    function getErrorMsgOnInvalidImageData(){
+        $image_file = $_FILES['profile_image'];
+        if($image_file['error'] > 0 || strlen($image_file['tmp_name']) == 0){
+            return constructErrorMessageParagraph('A profile image is required!');
+        }
+
+        if(!isProfilePhotoWithinExpectedSize($image_file)){
+            $msg = 'Profile image must be less than ' . PROFILE_IMAGE_ACCEPTED_SIZE_KB . 'Kb in size';
+            return constructErrorMessageParagraph($msg);
+        }
+    }
+
 ?>
