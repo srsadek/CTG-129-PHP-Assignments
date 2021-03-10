@@ -21,6 +21,15 @@
         if(!errorExists($err)){
             storeImageToMediaDir($_FILES['profile_image']);
             clearInputs($entered_value);
+            $msg =  '<div class="alert alert-success alert-dismissible mx-3 fade show" role="alert">
+            User Signed Up !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }else{
+            $msg =  '<div class="alert alert-danger alert-dismissible mx-3 fade show" role="alert">
+            All fields are required !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
         }
     }
 
@@ -51,6 +60,7 @@
                     <div class="card-title text-center">
                         <h2 style="margin-top:20px;">Sign Up</h2>
                     </div>
+                    <?php echo isset($msg)? $msg : ''; ?>
                     <div class="card-body">
                         <?php  echo isset($display_msg) ? $display_msg : "" ?>
                         <form action="" method="post" enctype="multipart/form-data">
